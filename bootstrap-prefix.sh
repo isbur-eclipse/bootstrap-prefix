@@ -944,10 +944,20 @@ bootstrap_python() {
 	patch=true
 
 	einfo "Bootstrapping ${A%-*}"
-
+	
+	####
+	# Invasion!
+	####
+	export OFFLINE_MODE=true
+	
 	# don't really want to put this on the mirror, since they are
 	# non-vanilla sources, bit specific for us
 	efetch ${DISTFILES_URL}/${A} || return 1
+	
+	####
+	# Invasion!
+	####
+	unset OFFLINE_MODE
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
